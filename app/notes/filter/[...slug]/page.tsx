@@ -7,7 +7,6 @@ import {
   QueryClient,
 } from "@tanstack/react-query";
 import { notFound } from "next/navigation";
-import { title } from "process";
 import { Metadata } from "next";
 
 type Props = {
@@ -23,7 +22,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     openGraph: {
       title: `Notes - ${tag}`,
       description: `All notes with this tag ${tag}`,
-      //  url
+      url: "https://08-zustand-5ura3vio2-ponomarenko404-langs-projects.vercel.app",
       images: [
         {
           url: "https://ac.goit.global/fullstack/react/notehub-og-meta.jpg",
