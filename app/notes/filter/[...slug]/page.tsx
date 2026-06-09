@@ -7,10 +7,34 @@ import {
   QueryClient,
 } from "@tanstack/react-query";
 import { notFound } from "next/navigation";
+import { title } from "process";
+import { Metadata } from "next";
 
 type Props = {
   params: { slug: string[] };
 };
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params;
+  const tag = slug[0] === "all" ? "All" : slug[0];
+  return {
+    title: `Notes ${tag}`,
+    description: `All notes with this tag ${tag}`,
+    openGraph: {
+      title: `Notes - ${tag}`,
+      description: `All notes with this tag ${tag}`,
+      //  url
+      images: [
+        {
+          url: "https://ac.goit.global/fullstack/react/notehub-og-meta.jpg",
+          width: 1200,
+          height: 630,
+          alt: "NoteHub",
+        },
+      ],
+    },
+  };
+}
 
 export default async function NotesPage({ params }: Props) {
   const queryClient = new QueryClient();
